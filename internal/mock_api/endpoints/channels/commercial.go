@@ -126,6 +126,7 @@ func postCommercial(w http.ResponseWriter, r *http.Request) {
 				Message:    "Please try again later",
 				RetryAfter: int(retryAfter),
 			}
+			w.WriteHeader(400)
 		} else {
 			// after cooldown, so remvoe entry and continue
 			delete(commericalCooldown, body.BroadcasterID)
